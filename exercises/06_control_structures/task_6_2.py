@@ -1,14 +1,19 @@
-# -*- coding: utf-8 -*-
-"""
-Задание 6.2
+add = input("IP-adress: ")
+add_s = add.split(".")
+n = 0
 
-Запросить у пользователя ввод IP-адреса в формате 10.0.1.1
-В зависимости от типа адреса (описаны ниже), вывести на стандартный поток вывода:
-   'unicast' - если первый байт в диапазоне 1-223
-   'multicast' - если первый байт в диапазоне 224-239
-   'local broadcast' - если IP-адрес равен 255.255.255.255
-   'unassigned' - если IP-адрес равен 0.0.0.0
-   'unused' - во всех остальных случаях
+for octet in add_s:
+    add_s[n] = int(octet)
+    n += 1
 
-Ограничение: Все задания надо выполнять используя только пройденные темы.
-"""
+if 1 <= add_s[0] <= 223:
+    print("unicast")
+elif 224 <= add_s[0] <= 239:
+    print("multicast")
+elif add == "255.255.255.255":
+    print("local broadcast")
+elif add == "0.0.0.0":
+    print("unassigned")
+else:
+    print("unused")
+

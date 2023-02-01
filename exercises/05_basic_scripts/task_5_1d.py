@@ -1,23 +1,3 @@
-# -*- coding: utf-8 -*-
-"""
-Задание 5.1d
-
-Переделать скрипт из задания 5.1c таким образом, чтобы, при запросе параметра,
-пользователь мог вводить название параметра в любом регистре.
-
-Пример выполнения скрипта:
-$ python task_5_1d.py
-Введите имя устройства: r1
-Введите имя параметра (ios, model, vendor, location, ip): IOS
-15.4
-
-
-Ограничение: нельзя изменять словарь london_co.
-
-Все задания надо выполнять используя только пройденные темы. То есть эту задачу можно
-решить без использования условия if.
-"""
-
 london_co = {
     "r1": {
         "location": "21 New Globe Walk",
@@ -43,3 +23,7 @@ london_co = {
         "routing": True,
     },
 }
+dev_name = input("Enter device name: ")
+dev_par = input("Enter parameter(" + ", ".join(london_co[dev_name].keys()) + "): ")
+print("-"*30 + "\n")
+print(london_co[dev_name].get(dev_par.lower(), '*** There is no such option! ***'))

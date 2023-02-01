@@ -51,28 +51,14 @@ interface FastEthernet0/7
 На стандартный поток вывода надо выводить только команды trunk настройки,
 а access закомментировать.
 """
-
-access_template = [
-    "switchport mode access",
-    "switchport access vlan",
-    "spanning-tree portfast",
-    "spanning-tree bpduguard enable",
-]
-
-trunk_template = [
-    "switchport trunk encapsulation dot1q",
-    "switchport mode trunk",
-    "switchport trunk allowed vlan",
-]
-
-access = {"0/12": "10", "0/14": "11", "0/16": "17", "0/17": "150"}
-trunk = {
-    "0/1": ["add", "10", "20"],
-    "0/2": ["only", "11", "30"],
-    "0/4": ["del", "17"],
-    "0/5": ["add", "10", "21"],
-    "0/7": ["only", "30"],
-}
+# access_template = [
+#     "switchport mode access",
+#     "switchport access vlan",
+#     "spanning-tree portfast",
+#     "spanning-tree bpduguard enable",
+# ]
+#
+# access = {"0/12": "10", "0/14": "11", "0/16": "17", "0/17": "150"}
 
 # for intf, vlan in access.items():
 #     print("interface FastEthernet" + intf)
@@ -81,4 +67,25 @@ trunk = {
 #             print(f" {command} {vlan}")
 #         else:
 #             print(f" {command}")
+trunk_template = [
+    "switchport trunk encapsulation dot1q",
+    "switchport mode trunk",
+    "switchport trunk allowed vlan",
+]
+trunk = {
+    "0/1": ["add", "10", "20"],
+    "0/2": ["only", "11", "30"],
+    "0/4": ["del", "17"],
+    "0/5": ["add", "10", "21"],
+    "0/7": ["only", "30"],
+}
+for int, all_vlan in trunk.items():
+    print("interface FastEthernet" + int)
+    for command in trunk_template:
+        for command in trunk_template:
+
+        if command.endswith("allowed"):
+            print(f" {command} {all_vlan}")
+        else:
+            print(f" {command}")
 
